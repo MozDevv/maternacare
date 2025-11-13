@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MaternaCare - Profile</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<body>
+<div class="sidebar">
+    <h2>MaternaCare</h2>
+    <nav>
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/reminders}">Reminders</a>
+        <a th:href="@{/milestones}">Milestones</a>
+        <a th:href="@{/profile}">Profile</a>
+        <a th:href="@{/logout}">Logout</a>
+    </nav>
+</div>
+
+<div class="main">
+    <h1>Profile</h1>
+
+    <div th:if="${success}" class="alert" th:text="${success}"></div>
+
+    <div class="card">
+        <form th:action="@{/profile}" method="post">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="fullName" th:value="${user.fullName}" required/>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" th:value="${user.email}" readonly/>
+            </div>
+            <div class="form-group">
+                <label>Due Date</label>
+                <input type="date" name="dueDate" th:value="${user.dueDate}" required/>
+            </div>
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
