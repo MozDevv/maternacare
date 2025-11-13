@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MaternaCare - Milestones</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<body>
+<div class="sidebar">
+    <h2>MaternaCare</h2>
+    <nav>
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/reminders}">Reminders</a>
+        <a th:href="@{/milestones}">Milestones</a>
+        <a th:href="@{/profile}">Profile</a>
+        <a th:href="@{/logout}">Logout</a>
+    </nav>
+</div>
+
+<div class="main">
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <h1 style="margin:0;">Pregnancy Milestones</h1>
+        <a th:href="@{/milestones/add}"><button type="button">+ Add Milestone</button></a>
+    </div>
+    <div th:each="m : ${milestones}">
+        <div class="card" th:classappend="${m.weekNumber == week} ? ' current-week' : ''">
+            <p><strong th:text="${'Week ' + m.weekNumber}"></strong>: <span th:text="${m.description}"></span></p>
+            <p><em th:text="${m.tip}"></em></p>
+            <div>
+                <a th:href="@{'/milestones/edit/' + ${m.id}}">Edit</a> |
+                <a th:href="@{'/milestones/delete/' + ${m.id}}">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

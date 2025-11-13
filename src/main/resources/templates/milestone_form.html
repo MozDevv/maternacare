@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${milestone.id} != null ? 'Edit Milestone' : 'Add Milestone'">Milestone</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<body>
+<div class="sidebar">
+    <h2>MaternaCare</h2>
+    <nav>
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/reminders}">Reminders</a>
+        <a th:href="@{/milestones}">Milestones</a>
+        <a th:href="@{/profile}">Profile</a>
+        <a th:href="@{/logout}">Logout</a>
+    </nav>
+</div>
+
+<div class="main">
+    <div class="card">
+        <h1 th:text="${milestone.id} != null ? 'Edit Milestone' : 'Add Milestone'"></h1>
+        <form th:action="${formAction}" method="post">
+            <div class="form-group">
+                <label for="weekNumber">Week Number</label>
+                <input id="weekNumber" name="weekNumber" type="number" min="0" max="40" th:value="${milestone.weekNumber}" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input id="description" name="description" type="text" th:value="${milestone.description}" required />
+            </div>
+            <div class="form-group">
+                <label for="tip">Tip</label>
+                <input id="tip" name="tip" type="text" th:value="${milestone.tip}" />
+            </div>
+            <div>
+                <button type="submit">Save</button>
+                <a th:href="@{/milestones}" style="margin-left:8px;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

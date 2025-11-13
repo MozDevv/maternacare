@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MaternaCare - Reminders</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<body>
+<div class="sidebar">
+    <h2>MaternaCare</h2>
+    <nav>
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/reminders}">Reminders</a>
+        <a th:href="@{/milestones}">Milestones</a>
+        <a th:href="@{/profile}">Profile</a>
+        <a th:href="@{/logout}">Logout</a>
+    </nav>
+</div>
+
+<div class="main">
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <h1 style="margin:0;">All Reminders</h1>
+        <a th:href="@{/reminders/add}"><button type="button">+ Add Reminder</button></a>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${reminders}">
+            <td th:text="${r.title}"></td>
+            <td th:text="${r.description}"></td>
+            <td th:text="${r.date}"></td>
+            <td>
+                <a th:href="@{'/reminders/edit/' + ${r.id}}">Edit</a> |
+                <a th:href="@{'/reminders/delete/' + ${r.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
